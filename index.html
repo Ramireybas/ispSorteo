@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Sorteo</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="background-glow"></div>
+
+    <main class="container">
+
+        <img src="logo.png" alt="Logo Empresa" class="logo">
+
+        <h1>SISTEMA DE SORTEO</h1>
+
+        <div class="card">
+
+            <label for="csvFile" class="upload-label">
+                Seleccionar archivo CSV
+            </label>
+
+            <input type="file" id="csvFile" accept=".csv">
+
+            <div class="info">
+                Participantes cargados:
+                <span id="participantsCount">0</span>
+            </div>
+
+            <button id="drawButton" disabled>
+                REALIZAR SORTEO
+            </button>
+
+        </div>
+
+        <section class="winner-section hidden" id="winnerSection">
+
+            <h2>NÚMERO GANADOR</h2>
+
+            <div id="winnerNumber" class="winner-number">
+                000000
+            </div>
+
+            <div id="dateTime" class="date-time"></div>
+
+        </section>
+
+    </main>
+
+    <audio id="winSound" src="sounds/win.mp3"></audio>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
