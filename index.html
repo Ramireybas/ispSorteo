@@ -6,29 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Sorteo</title>
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
-
     <div class="background-glow"></div>
+
+    <!-- DECORACIONES -->
+
+    <img src="/assets/estadio.png" class="stadium-bg" alt="Estadio">
+
+    <img src="/assets/copa.png" class="cup-image" alt="Copa Mundial">
+
+    <img src="/assets/pelota.png" class="ball-image" alt="Pelota">
+
+    <img src="/assets/tv.png" class="tv-image" alt="TV 50 pulgadas">
+
 
     <main class="container">
 
-        <img src="logo.png" alt="Logo Empresa" class="logo">
+        <img src="/assets/logo.png" alt="Logo Empresa" class="logo">
 
-        <h1>SISTEMA DE SORTEO</h1>
+        <div class="title-box">
+            <span class="mini-title">SORTEO ESPECIAL</span>
+        <h1>
+    <span class="title-white">PROMO</span>
+    <span class="title-green">MUNDIAL</span>
+</h1>
+
+<p>
+    Participá por una
+    <span>TV de 50 pulgadas</span>
+</p>
+        </div>
+
 
         <div class="card">
 
             <label for="csvFile" class="upload-label">
-                Seleccionar archivo CSV
+                SELECCIONAR LOCALIDAD
             </label>
 
             <input type="file" id="csvFile" accept=".csv">
 
             <div class="info">
-                Participantes cargados:
+               Numero de participantes :
                 <span id="participantsCount">0</span>
             </div>
 
@@ -37,6 +59,7 @@
             </button>
 
         </div>
+
 
         <section class="winner-section hidden" id="winnerSection">
 
@@ -49,12 +72,28 @@
             <div id="dateTime" class="date-time"></div>
 
         </section>
+   
 
+
+
+</section>
+
+<footer class="footer">
+
+    <p>¡SEGUINOS EN NUESTRAS REDES!</p>
+
+    <div class="socials">
+        <span><img src="/assets/instagram.png" alt="Instagram"></span>
+        <span><img src="/assets/facebook.png" alt="Facebook"></span>
+        <span><img src="/assets/whatsapp.png" alt="WhatsApp"></span>
+    </div>
+
+</footer>
     </main>
 
     <audio id="winSound" src="sounds/win.mp3"></audio>
 
-    <script src="script.js"></script>
+    <script src="/js/script.js"></script>
 
 </body>
 
