@@ -111,7 +111,7 @@ body::before {
 ========================= */
 
 .logo {
-    width: 190px;
+    width: 390px;
 
     margin-bottom: 8px;
 
@@ -131,8 +131,11 @@ body::before {
     letter-spacing: 6px;
 
     font-size: 1rem;
-
+    font-weight: bold;
     opacity: 0.9;
+    color: #ffffff;
+
+
 }
 
 h1 {
@@ -153,24 +156,24 @@ h1 {
     text-shadow:
         0 0 15px rgba(0,255,170,0.4),
         0 0 35px rgba(0,132,255,0.35),
-        0 0 60px rgba(0,255,170,0.2);
+        0 0 60px rgba(0, 0, 0, 0.2);
 }
 
 .title-white {
-    color: white;
+    color: rgb(5, 207, 243);
 
     font-size: 5rem;
 }
 
 .title-green {
-    color: #a6ff00;
+    color: #ffffff;
 
-    font-size: 7rem;
+    font-size: 7rem;    
 
     text-shadow:
-        0 0 15px rgba(166,255,0,0.7),
-        0 0 35px rgba(166,255,0,0.5),
-        0 0 80px rgba(166,255,0,0.35);
+        0 0 15px rgb(5, 207, 243),
+        0 0 35px  rgb(64, 189, 211),
+        0 0 80px  rgb(128, 234, 253);
 }
 
 .title-box p {
@@ -180,11 +183,19 @@ h1 {
 }
 
 .title-box p span {
-    color: #9eff00;
+    color: rgb(5, 207, 243);
 
     font-weight: bold;
 }
+.participa {
+    color: rgb(5, 207, 243);
 
+    font-weight: bold;
+        text-shadow:
+        0 0 15px rgb(103, 197, 214),
+        0 0 35px  rgb(167, 224, 235),
+        0 0 80px  rgb(255, 255, 255);
+}
 /* =========================
    CARD
 ========================= */
@@ -386,7 +397,7 @@ button:disabled {
    DECORACIONES
 ========================= */
 
-.cup-image {
+.frente {
     position: absolute;
 
     left: 20px;
@@ -402,29 +413,15 @@ button:disabled {
         drop-shadow(0 0 40px rgba(255,215,0,0.35));
 }
 
-.ball-image {
-    position: absolute;
 
-    right: 90px;
-    top: 150px;
 
-    width: 250px;
-
-    z-index: 2;
-
-    filter:
-        drop-shadow(0 0 30px rgba(255,255,255,0.2));
-
-    animation: floatBall 4s ease-in-out infinite;
-}
-
-.tv-image {
+.dorso {
     position: absolute;
 
     right: 30px;
     bottom: 120px;
 
-    width: 432px; /* 20% más grande */
+    width: 360px; /* 20% más grande */
 
     z-index: 2;
 
@@ -597,19 +594,7 @@ button:disabled {
    ANIMACIONES
 ========================= */
 
-@keyframes floatBall {
-    0% {
-        transform: translateY(0px);
-    }
 
-    50% {
-        transform: translateY(-14px);
-    }
-
-    100% {
-        transform: translateY(0px);
-    }
-}
 
 @keyframes pulse {
     from {
@@ -627,17 +612,15 @@ button:disabled {
 
 @media (max-width: 1400px) {
 
-    .cup-image {
+    .frente{
         width: 280px;
     }
 
-    .tv-image {
-        width: 336px; /* 20% más grande */
+    .dorso {
+        width: 280px; /* 20% más grande */
     }
 
-    .ball-image {
-        width: 200px;
-    }
+
 
     .title-white {
         font-size: 4rem;
@@ -658,9 +641,8 @@ button:disabled {
         width: 90%;
     }
 
-    .cup-image,
-    .tv-image,
-    .ball-image {
+    .frente,
+    .dorso {
         opacity: 0.15;
     }
 
@@ -679,9 +661,9 @@ button:disabled {
 
 @media (max-width: 768px) {
 
-    .cup-image,
-    .tv-image,
-    .ball-image {
+    .frente,
+    .dorso
+    {
         display: none;
     }
 
