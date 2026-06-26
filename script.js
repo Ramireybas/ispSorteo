@@ -1,4 +1,12 @@
 const csvFile = document.getElementById("csvFile");
+const fileName = document.getElementById("fileName");
+
+csvFile.addEventListener("change", () => {
+    if (csvFile.files.length) {
+        fileName.textContent = csvFile.files[0].name;
+    }
+});
+
 const participantsCount = document.getElementById("participantsCount");
 const drawButton = document.getElementById("drawButton");
 
@@ -30,19 +38,12 @@ function loadCSV(event) {
             .map(line => line.trim())
             .filter(line => line !== "");
 
-        // VALIDACIONES TEST
+        // VALIDACIÓN DE DUPLICADOS
 
         const duplicates = findDuplicates(lines);
 
         if (duplicates.length > 0) {
-            alert("Hay números duplicados en el CSV.");
-            return;
-        }
-
-        const invalidNumbers = lines.filter(line => !/^\d{6}$/.test(line));
-
-        if (invalidNumbers.length > 0) {
-            alert("Hay números inválidos. Deben tener 6 dígitos.");
+            alert("Hay participantes duplicados en el CSV.");
             return;
         }
 
@@ -61,7 +62,6 @@ function loadCSV(event) {
 function findDuplicates(array) {
 
     const seen = new Set();
-
     const duplicates = [];
 
     for (const item of array) {
@@ -88,9 +88,10 @@ function startDraw() {
 
     const animationInterval = setInterval(() => {
 
-        const fakeNumber = generateRandomNumber();
+        const randomParticipant =
+            participants[Math.floor(Math.random() * participants.length)];
 
-        winnerNumber.textContent = fakeNumber;
+        winnerNumber.textContent = randomParticipant;
 
         animationCount++;
 
@@ -128,13 +129,6 @@ function showWinner() {
     participants = [];
 }
 
-function generateRandomNumber() {
-
-    return Math.floor(Math.random() * 1000000)
-        .toString()
-        .padStart(6, "0");
-}
-
 function launchConfetti() {
 
     for (let i = 0; i < 180; i++) {
@@ -150,7 +144,7 @@ function launchConfetti() {
 
         confetti.style.background =
             Math.random() > 0.5
-                ? "#00ffae"
+                ? "#ffffff"
                 : "#008cff";
 
         document.body.appendChild(confetti);
