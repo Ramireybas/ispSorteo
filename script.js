@@ -34,22 +34,16 @@ function loadCSV(event) {
 
         let lines = content.split(/\r?\n/);
 
+        // Limpia espacios en blanco y descarta líneas vacías
         lines = lines
             .map(line => line.trim())
             .filter(line => line !== "");
 
-        // VALIDACIÓN DE DUPLICADOS
-
-        const duplicates = findDuplicates(lines);
-
-        if (duplicates.length > 0) {
-            alert("Hay participantes duplicados en el CSV.");
-            return;
-        }
-
+        // SE ELIMINÓ LA VALIDACIÓN DE DUPLICADOS PARA PERMITIR QUE SE REPITAN
         participants = lines;
 
-        participantsCount.textContent = participants.length;
+        // SE MANTIENE COMENTADO PARA NO MOSTRAR LOS PARTICIPANTES EN LA INTERFAZ
+        // participantsCount.textContent = participants.length;
 
         drawButton.disabled = false;
 
@@ -59,6 +53,8 @@ function loadCSV(event) {
     reader.readAsText(file);
 }
 
+// Nota: Dejamos la función findDuplicates aquí por si la necesitas en otro lado, 
+// pero ya no se ejecuta al cargar el CSV.
 function findDuplicates(array) {
 
     const seen = new Set();
