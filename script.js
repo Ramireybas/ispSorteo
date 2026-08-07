@@ -1,11 +1,14 @@
 const csvFile = document.getElementById("csvFile");
 const fileName = document.getElementById("fileName");
 
-csvFile.addEventListener("change", () => {
-    if (csvFile.files.length) {
-        fileName.textContent = csvFile.files[0].name;
-    }
-});
+if (csvFile) {
+    csvFile.addEventListener("change", () => {
+        if (csvFile.files.length) {
+            fileName.textContent = csvFile.files[0].name;
+        }
+    });
+    csvFile.addEventListener("change", loadCSV);
+}
 
 const participantsCount = document.getElementById("participantsCount");
 const drawButton = document.getElementById("drawButton");
@@ -18,10 +21,7 @@ const winSound = document.getElementById("winSound");
 
 let participants = [];
 
-csvFile.addEventListener("change", loadCSV);
-
 function loadCSV(event) {
-
     const file = event.target.files[0];
 
     if (!file) return;
@@ -29,96 +29,128 @@ function loadCSV(event) {
     const reader = new FileReader();
 
     reader.onload = function (e) {
-
         const content = e.target.result;
 
         let lines = content.split(/\r?\n/);
 
-        // Limpia espacios en blanco y descarta líneas vacías
         lines = lines
             .map(line => line.trim())
             .filter(line => line !== "");
 
-        // SE ELIMINÓ LA VALIDACIÓN DE DUPLICADOS PARA PERMITIR QUE SE REPITAN
+        // VALIDACIÓN DE DUPLICADOS
+        const duplicates = findDuplicates(lines);
+
+        if (duplicates.length > 0) {
+            alert("Hay participantes duplicados en el CSV.");
+            return;
+        }
+
         participants = lines;
 
-        // SE MANTIENE COMENTADO PARA NO MOSTRAR LOS PARTICIPANTES EN LA INTERFAZ
-        // participantsCount.textContent = participants.length;
+        if (participantsCount) {
+            participantsCount.textContent = participants.length;
+        }
 
-        drawButton.disabled = false;
+        if (drawButton) {
+            drawButton.disabled = false;
+        }
 
-        winnerSection.classList.add("hidden");
+        if (winnerSection) {
+            winnerSection.classList.add("hidden");
+        }
     };
 
     reader.readAsText(file);
 }
 
-// Nota: Dejamos la función findDuplicates aquí por si la necesitas en otro lado, 
-// pero ya no se ejecuta al cargar el CSV.
 function findDuplicates(array) {
-
     const seen = new Set();
     const duplicates = [];
 
     for (const item of array) {
-
         if (seen.has(item)) {
             duplicates.push(item);
         }
-
         seen.add(item);
     }
 
     return duplicates;
 }
 
-drawButton.addEventListener("click", startDraw);
+if (drawButton) {
+    drawButton.addEventListener("click", startDraw);
+}
 
 function startDraw() {
-
     if (participants.length === 0) return;
 
     drawButton.disabled = true;
+    
+    if (winnerSection) {
+        winnerSection.classList.remove("hidden");
+    }
+
+    // Reiniciar animaciones previas del ganador y la bici
+    if (winnerNumber) {
+        winnerNumber.classList.remove("winner-pop");
+    }
+    
+    const bikeImg = document.querySelector(".bike-img");
+    if (bikeImg) {
+        bikeImg.classList.remove("bike-winner-effect");
+    }
 
     let animationCount = 0;
 
     const animationInterval = setInterval(() => {
-
         const randomParticipant =
             participants[Math.floor(Math.random() * participants.length)];
 
-        winnerNumber.textContent = randomParticipant;
+        if (winnerNumber) {
+            winnerNumber.textContent = randomParticipant;
+        }
 
         animationCount++;
 
-        if (animationCount > 25) {
-
+        if (animationCount > 30) {
             clearInterval(animationInterval);
-
             showWinner();
         }
-
-    }, 80);
+    }, 70);
 }
 
 function showWinner() {
-
     const randomIndex = Math.floor(Math.random() * participants.length);
-
     const winner = participants[randomIndex];
 
-    winnerSection.classList.remove("hidden");
+    if (winnerSection) {
+        winnerSection.classList.remove("hidden");
+    }
 
-    winnerNumber.textContent = winner;
+    if (winnerNumber) {
+        winnerNumber.textContent = winner;
+        // Animación de rebote festivo para el número
+        winnerNumber.classList.add("winner-pop");
+    }
+
+    // Animación de salto de celebración para la bicicleta
+    const bikeImg = document.querySelector(".bike-img");
+    if (bikeImg) {
+        bikeImg.classList.add("bike-winner-effect");
+        setTimeout(() => {
+            bikeImg.classList.remove("bike-winner-effect");
+        }, 1000);
+    }
 
     const now = new Date();
+    if (dateTime) {
+        dateTime.textContent =
+            now.toLocaleDateString() + " - " + now.toLocaleTimeString();
+    }
 
-    dateTime.textContent =
-        now.toLocaleDateString() +
-        " - " +
-        now.toLocaleTimeString();
-
-    winSound.play();
+    if (winSound) {
+        winSound.play();
+    }
 
     launchConfetti();
 
@@ -126,22 +158,29 @@ function showWinner() {
 }
 
 function launchConfetti() {
+    // Paleta de colores e íconos infantiles
+    const colors = ["#ffea00", "#ff007f", "#00e676", "#00b0ff", "#aa00ff", "#ffffff"];
+    const icons = ["★", "🎈", "🍬", "✦", "●"];
 
-    for (let i = 0; i < 180; i++) {
-
+    for (let i = 0; i < 120; i++) {
         const confetti = document.createElement("div");
-
         confetti.classList.add("confetti");
 
-        confetti.style.left = Math.random() * window.innerWidth + "px";
+        // Alternar entre confeti normal e íconos flotantes
+        if (Math.random() > 0.4) {
+            confetti.textContent = icons[Math.floor(Math.random() * icons.length)];
+            confetti.style.fontSize = (Math.random() * 20 + 15) + "px";
+            confetti.style.background = "none";
+        } else {
+            confetti.style.width = (Math.random() * 10 + 8) + "px";
+            confetti.style.height = (Math.random() * 15 + 10) + "px";
+            confetti.style.borderRadius = Math.random() > 0.5 ? "50%" : "3px";
+            confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+        }
 
-        confetti.style.animationDuration =
-            (Math.random() * 3 + 2) + "s";
-
-        confetti.style.background =
-            Math.random() > 0.5
-                ? "#ffffff"
-                : "#008cff";
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.animationDuration = (Math.random() * 2.5 + 2) + "s";
+        confetti.style.animationDelay = (Math.random() * 0.5) + "s";
 
         document.body.appendChild(confetti);
 
