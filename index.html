@@ -4,81 +4,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Sorteo</title>
-
+    <title>Sistema de Sorteo - Día de las Infancias</title>
+    <!-- Fuente Google Montserrat para los títulos estilo 3D -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@700&family=Titan+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <div class="background-glow"></div>
 
-    <!-- DECORACIONES -->
-
+    <!-- FONDO DE ESTADIO -->
     <img src="assets/estadio.png" class="stadium-bg" alt="Estadio">
-
-    <img src="assets/frente.png" class="frente" alt="Copa Mundial">
-
-
-
-    <img src="assets/dorso.png" class="dorso" alt="TV 50 pulgadas">
-
 
     <main class="container">
 
+        <!-- LOGO EMPRESA -->
         <img src="assets/logo.png" alt="Logo Empresa" class="logo">
 
-        <div class="title-box">
-            <span class="mini-title">SORTEO ESPECIAL</span>
-        <h1>
-    <span class="title-white">ALENTA A LA </span>
-    <span class="title-green">SELECCION!!</span>
-</h1>
+        <!-- ENCABEZADO DE TÍTULOS -->
+        <header class="title-box">
+            <div class="mini-title">★ ★ SORTEO ESPECIAL ★ ★</div>
+            <h1>
+                <span class="title-white">DÍA DE LAS</span>
+                <span class="title-yellow">INFANCIAS!!</span>
+            </h1>
+            <p class="participa-badge">¡Participa por una bicicleta!</p>
+        </header>
 
-<p>
-  
-    <span class="participa">Participa por una camiseta de ISP.</span>
-</p>
-        </div>
-
-
-        <div class="card">
-
-            <label for="csvFile" class="upload-label">
-                PARTICIPANTES
-            </label>
-
-            <input type="file" id="csvFile" accept=".csv">
-
-            <div class="info">
-               
-                <span id="participantsCount"></span>
+        <!-- SECCIÓN CENTRAL: BICICLETA + TARJETA -->
+        <div class="main-content">
+            
+            <!-- BICICLETA -->
+            <div class="bike-container">
+                <img src="assets/bicicleta.png" alt="Bicicleta de Premio" class="bike-img">
             </div>
-         
 
-            <button id="drawButton" disabled>
-                REALIZAR SORTEO
-            </button>
+            <!-- TARJETA DE CONTROL (SE MANTIENEN MISMOS IDs PARA JS) -->
+            <div class="card">
+
+                <!-- BOTÓN SELECCIONAR LOCALIDAD -->
+                <label for="csvFile" class="upload-label">
+                    <span class="icon">📍</span> SELECCIONAR LOCALIDAD
+                </label>
+                <input type="file" id="csvFile" accept=".csv">
+
+                <!-- CONTADOR DE PARTICIPANTES -->
+                <div class="info-box">
+                    <span class="info-label">NÚMERO DE PARTICIPANTES</span>
+                    <div class="counter-display">
+                        <span class="icon-users">👥</span>
+                        <span class="star">★</span>
+                        <span id="participantsCount">0</span>
+                        <span class="star">★</span>
+                    </div>
+                </div>
+
+                <!-- BOTÓN REALIZAR SORTEO -->
+                <button id="drawButton" disabled>
+                    <span class="icon">🎁</span> REALIZAR SORTEO
+                </button>
+
+            </div>
 
         </div>
 
-
+        <!-- SECCIÓN DE GANADOR -->
         <section class="winner-section hidden" id="winnerSection">
-
-            <h2> GANADOR</h2>
-
-            <div id="winnerNumber" class="winner-number">
-                000000
-            </div>
-
+            <h2>NÚMERO GANADOR</h2>
+            <div id="winnerNumber" class="winner-number">000000</div>
             <div id="dateTime" class="date-time"></div>
-
         </section>
-   
 
-
-
-</section>
-
+        <!-- FOOTER / REDES -->
+        <footer class="footer">
+            <span class="star">★</span>
+            <p>¡SEGUINOS EN NUESTRAS REDES!</p>
+            <div class="socials">
+                <a href="#"><img src="assets/instagram.png" alt="Instagram"></a>
+                <a href="#"><img src="assets/facebook.png" alt="Facebook"></a>
+                <a href="#"><img src="assets/whatsapp.png" alt="WhatsApp"></a>
+            </div>
+            <span class="star">★</span>
+        </footer>
 
     </main>
 
