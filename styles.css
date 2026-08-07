@@ -5,8 +5,8 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #07111c;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: #020712;
     overflow-x: hidden;
     overflow-y: auto;
     min-height: 100vh;
@@ -14,321 +14,323 @@ body {
     position: relative;
 }
 
-/* =========================
-   OVERLAY PROFUNDIDAD
-========================= */
-
+/* OVERLAY PROFUNDIDAD */
 body::before {
     content: "";
-
     position: fixed;
-
     inset: 0;
-
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(0,0,0,0.55),
-            rgba(0,0,0,0.15),
-            rgba(0,0,0,0.65)
-        );
-
+    /* Reducimos la opacidad del negro a solo 15% - 30% */
+    background: radial-gradient(circle at 50% 30%, rgba(30, 0, 80, 0.15), rgba(2, 7, 18, 0.35));
     z-index: 1;
-
     pointer-events: none;
 }
 
-/* =========================
-   FONDO
-========================= */
-
+/* FONDO CON DEGRADADOS BRILLANTES */
 .background-glow {
     position: absolute;
     inset: 0;
-
     background:
-        radial-gradient(circle at top left,
-            rgba(0, 255, 170, 0.16),
-            transparent 30%),
-
-        radial-gradient(circle at bottom right,
-            rgba(0, 132, 255, 0.22),
-            transparent 35%);
-
+        radial-gradient(circle at 15% 20%, rgba(0, 180, 255, 0.4), transparent 50%),
+        radial-gradient(circle at 85% 25%, rgba(200, 0, 255, 0.4), transparent 50%),
+        radial-gradient(circle at 50% 85%, rgba(0, 255, 170, 0.3), transparent 60%);
     z-index: 1;
 }
 
 .stadium-bg {
     position: absolute;
-
     bottom: 0;
     left: 50%;
-
     transform: translateX(-50%);
-
     width: 100%;
     height: 100%;
-
     object-fit: cover;
-
-    opacity: 0.60;
-
+    opacity: 0.9; /* SUBER DE 0.5 A 0.9 PARA ACLARAR */
     z-index: 0;
 }
-
-/* =========================
-   CONTENEDOR PRINCIPAL
-========================= */
-
+/* CONTENEDOR PRINCIPAL */
 .container {
     position: relative;
-
     z-index: 5;
-
     width: 100%;
-    max-width: 1600px;
-
+    max-width: 1400px;
     min-height: 100vh;
-
     margin: 0 auto;
-
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-
-    justify-content: flex-start;
-
-    text-align: center;
-
-    padding-top: 20px;
-    padding-bottom: 20px;
+    justify-content: space-between;
+    padding: 15px 20px;
 }
 
-/* =========================
-   LOGO
-========================= */
-
+/* LOGO */
 .logo {
-    width: 390px;
-
-    margin-bottom: 8px;
-
-    filter:
-        drop-shadow(0 0 15px rgba(0,255,170,0.35));
+    width: 230px;
+    filter: drop-shadow(0 0 12px rgba(0, 212, 255, 0.6));
+    margin-bottom: 5px;
 }
 
-/* =========================
-   TITULOS
-========================= */
-
+/* TITULOS CON ESTILO 3D (AMARILLO Y BLANCO) */
 .title-box {
-    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
 .mini-title {
-    letter-spacing: 6px;
-
-    font-size: 1rem;
-    font-weight: bold;
-    opacity: 0.9;
+    background: #001233;
     color: #ffffff;
-
-
+    font-size: 0.85rem;
+    font-weight: 900;
+    padding: 4px 16px;
+    border-radius: 20px;
+    border: 2px solid #ffcc00;
+    letter-spacing: 2px;
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.4);
 }
+
+/* =========================
+   TITULOS (NUEVA TIPOGRAFÍA INFANTIL 3D)
+========================= */
 
 h1 {
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
+    line-height: 0.85;
+    text-transform: uppercase;
+    margin: 8px 0;
+    /* Aplicamos la fuente cargada */
+    font-family: 'Titan One', 'Fredoka', cursive, sans-serif;
+}
 
-    line-height: 0.9;
+/* "DÍA DE LAS" - BLANCO CON BORDE Y SOMBRA AZUL 3D */
+.title-white {
+    color: #ffffff;
+    font-size: 4.8rem;
+    letter-spacing: 2px;
+    -webkit-text-stroke: 3px #0038b8; /* Borde azul oscuro grueso */
+    text-shadow: 
+        0 6px 0 #002b8f,
+        0 10px 0 #001f66,
+        0 14px 20px rgba(0, 0, 0, 0.8);
+}
 
-    font-weight: 900;
-
-    margin-top: 8px;
-
-    margin-bottom: 10px;
-
-    text-shadow:
-        0 0 15px rgba(0,255,170,0.4),
-        0 0 35px rgba(0,132,255,0.35),
-        0 0 60px rgba(0, 0, 0, 0.2);
+/* "INFANCIAS!!" - AMARILLO VIBRANTE CON SOMBRA NARANJA 3D */
+.title-yellow {
+    color: #ffea00;
+    font-size: 6.2rem;
+    letter-spacing: 2px;
+    -webkit-text-stroke: 3px #6e3b00; /* Borde marrón/naranja oscuro */
+    text-shadow: 
+        0 8px 0 #d47a00,
+        0 14px 0 #8a4e00,
+        0 16px 25px rgba(0, 0, 0, 0.9),
+        0 0 30px rgba(255, 234, 0, 0.6);
 }
 
 .title-white {
-    color: rgb(5, 207, 243);
-
-    font-size: 5rem;
-}
-
-.title-green {
     color: #ffffff;
-
-    font-size: 7rem;    
-
-    text-shadow:
-        0 0 15px rgb(5, 207, 243),
-        0 0 35px  rgb(64, 189, 211),
-        0 0 80px  rgb(128, 234, 253);
+    font-size: 4.5rem;
+    font-weight: 900;
+    text-shadow: 
+        0 4px 0 #0051ff,
+        0 8px 0 #002699,
+        0 10px 20px rgba(0, 0, 0, 0.8);
+    -webkit-text-stroke: 1.5px #0033aa;
 }
 
-.title-box p {
-    font-size: 1.7rem;
-
-    opacity: 0.95;
+.title-yellow {
+    color: #ffea00;
+    font-size: 5.8rem;
+    font-weight: 900;
+    text-shadow: 
+        0 6px 0 #d47a00,
+        0 10px 0 #804a00,
+        0 12px 25px rgba(0, 0, 0, 0.9),
+        0 0 30px rgba(255, 234, 0, 0.5);
+    -webkit-text-stroke: 2px #5a2e00;
 }
 
-.title-box p span {
-    color: rgb(5, 207, 243);
-
-    font-weight: bold;
-}
-.participa {
-    color: rgb(5, 207, 243);
-
-    font-weight: bold;
-        text-shadow:
-        0 0 15px rgb(103, 197, 214),
-        0 0 35px  rgb(167, 224, 235),
-        0 0 80px  rgb(255, 255, 255);
-}
-/* =========================
-   CARD
-========================= */
-
-.card {
-
-    margin-top: 10px;
-
-    width: 600px;
-
-    padding: 35px;
-
-    border-radius: 30px;
-
-    background: rgba(0,0,0,0.40);
-
-    border: 1px solid rgba(255,255,255,0.15);
-
-    backdrop-filter: blur(16px);
-
-    box-shadow:
-        0 0 50px rgba(0,0,0,0.45),
-        0 0 60px rgba(0,255,170,0.10);
-
-    z-index: 10;
+.participa-badge {
+    background: linear-gradient(90deg, #ff007f, #aa00ff);
+    color: #ffffff;
+    font-size: 1.15rem;
+    font-weight: 800;
+    padding: 5px 22px;
+    border-radius: 50px;
+    border: 2px solid #ffffff;
+    box-shadow: 0 4px 15px rgba(255, 0, 127, 0.5);
 }
 
-.upload-label {
-    display: inline-block;
-
+/* SECCIÓN CENTRAL: BICICLETA + CARD LADO A LADO */
+.main-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
+    max-width: 1200px;
+    gap: 40px;
+    margin: 10px 0;
+}
 
-    padding: 22px;
+/* BICICLETA */
+.bike-container {
+    position: relative;
+    flex: 1.2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-    border-radius: 16px;
+.bike-img {
+    width: 100%;
+    max-width: 580px;
+    height: auto;
+    object-fit: contain;
+    z-index: 2;
+    filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.7));
 
-    background: linear-gradient(
-        90deg,
-        #00c853,
-        #008cff
-    );
+    /* --- AJUSTE DE POSICIÓN --- */
+    /* Aumentamos el segundo valor (Y) a positivo para bajarla */
+    transform: translate(-20px, 120px); 
+}
 
-    font-weight: bold;
+/* CARD / PANEL DE CONTROL */
+.card {
+    flex: 0.9;
+    max-width: 440px;
+    padding: 25px;
+    border-radius: 24px;
+    background: rgba(8, 18, 42, 0.8);
+    border: 3px solid #00d4ff;
+    backdrop-filter: blur(12px);
+    box-shadow: 
+        0 0 30px rgba(0, 212, 255, 0.3),
+        inset 0 0 15px rgba(0, 212, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    z-index: 10;
 
-    font-size: 1.3rem;
-
-    letter-spacing: 1px;
-
+    /* --- CONTROLES MANUALES PARA LA CARD --- */
+    transform: translate(200px, 0px) scale(1); 
+}
+/* BOTÓN CARGAR CSV */
+.upload-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px;
+    border-radius: 50px;
+    background: linear-gradient(90deg, #00e676, #00b0ff);
+    color: #ffffff;
+    font-weight: 900;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
     cursor: pointer;
-
-    transition: 0.3s;
-
-    box-shadow:
-        0 0 25px rgba(0,255,170,0.15),
-        inset 0 0 12px rgba(255,255,255,0.08);
+    transition: all 0.2s ease;
+    border: 2px solid #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 230, 118, 0.4);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .upload-label:hover {
-    transform: scale(1.03);
-
-    box-shadow:
-        0 0 35px rgba(0,255,170,0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 230, 118, 0.6);
 }
 
 input[type="file"] {
     display: none;
 }
 
-.info {
-    margin-top: 28px;
+/* CONTADOR DE PARTICIPANTES */
+.info-box {
+    text-align: center;
+}
 
-    font-size: 1.4rem;
+.info-label {
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #d0e6ff;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.counter-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 8px 16px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.icon-users {
+    font-size: 1.5rem;
+    background: #ffffff;
+    color: #0a1432;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #participantsCount {
-    color: #00ffae;
-
-    font-weight: bold;
+    color: #76ff03;
+    font-size: 2.8rem;
+    font-weight: 900;
+    text-shadow: 0 0 12px rgba(118, 255, 3, 0.6);
 }
 
+.star {
+    color: #ffea00;
+    font-size: 1.2rem;
+}
+
+/* BOTÓN DE REALIZAR SORTEO */
 button {
-    margin-top: 30px;
-
     width: 100%;
-
-    padding: 22px;
-
-    border: none;
-
-    border-radius: 16px;
-
-    background: linear-gradient(
-        90deg,
-        #00c853,
-        #008cff
-    );
-
+    padding: 15px;
+    border: 2px solid #ffffff;
+    border-radius: 50px;
+    background: linear-gradient(90deg, #0088ff, #00c853);
     color: white;
-
-    font-size: 1.3rem;
-
-    font-weight: bold;
-
+    font-size: 1.1rem;
+    font-weight: 900;
     letter-spacing: 1px;
-
     cursor: pointer;
-
-    transition: 0.3s;
-
-    box-shadow:
-        0 0 25px rgba(0,255,170,0.15),
-        inset 0 0 12px rgba(255,255,255,0.08);
+    transition: all 0.2s ease;
+    box-shadow: 0 5px 20px rgba(0, 136, 255, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 button:hover:enabled {
-    transform: scale(1.03);
-
-    box-shadow:
-        0 0 35px rgba(0,255,170,0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 136, 255, 0.7);
 }
 
 button:disabled {
     opacity: 0.4;
+    cursor: not-allowed;
+    filter: grayscale(0.5);
 }
 
-/* =========================
-   GANADOR
-========================= */
-
+/* GANADOR */
 .winner-section {
-    margin-top: 25px;
-
-    position: relative;
+    margin-top: 15px;
+    text-align: center;
 }
 
 .hidden {
@@ -336,392 +338,160 @@ button:disabled {
 }
 
 .winner-section h2 {
-    color: #00ffae;
-
-    margin-bottom: 15px;
-
-    font-size: 2.5rem;
-
-    letter-spacing: 3px;
+    color: #ffea00;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255, 234, 0, 0.5);
 }
 
 .winner-number {
-    font-size: 9rem;
-
+    font-size: 5rem;
     font-weight: 900;
-
-    line-height: 1;
-
-    color: white;
-
-    position: relative;
-
-    text-shadow:
-        0 0 10px #fff,
-        0 0 25px #00ffae,
-        0 0 50px #00ffae,
-        0 0 90px #00d9ff;
-
+    color: #ffffff;
+    text-shadow: 0 0 20px #00ffae, 0 0 40px #00d9ff;
     animation: pulse 1s infinite alternate;
 }
 
-.winner-number::after {
-    content: "";
-
-    position: absolute;
-
-    left: 50%;
-    bottom: -25px;
-
-    transform: translateX(-50%);
-
-    width: 80%;
-    height: 25px;
-
-    background: rgba(0,255,170,0.35);
-
-    filter: blur(25px);
-
-    border-radius: 50%;
-}
-
 .date-time {
-    margin-top: 20px;
-
-    font-size: 1.3rem;
-
+    font-size: 1.1rem;
     opacity: 0.9;
 }
 
-/* =========================
-   DECORACIONES
-========================= */
-
-.frente {
-    position: absolute;
-
-    left: 20px;
-    bottom: 120px;
-
-    width: 360px;
-
-    z-index: 2;
-
-    opacity: 0.95;
-
-    filter:
-        drop-shadow(0 0 40px rgba(255,215,0,0.35));
-}
-
-
-
-.dorso {
-    position: absolute;
-
-    right: 30px;
-    bottom: 120px;
-
-    width: 360px; /* 20% más grande */
-
-    z-index: 2;
-
-    filter:
-        drop-shadow(0 0 40px rgba(0,255,170,0.35));
-}
-
-/* =========================
-   CARDS INFERIORES
-========================= */
-
-.info-cards {
-
-    margin-top: 40px;
-
-    display: flex;
-
-    gap: 25px;
-
-    justify-content: center;
-
-    flex-wrap: wrap;
-
-    width: 100%;
-
-    padding: 0 30px;
-}
-
-.info-card {
-
-    width: 360px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 20px;
-
-    padding: 25px;
-
-    border-radius: 20px;
-
-    background: rgba(0,0,0,0.45);
-
-    border: 1px solid rgba(140,255,0,0.5);
-
-    backdrop-filter: blur(10px);
-
-    box-shadow:
-        0 0 25px rgba(0,255,170,0.08);
-}
-
-.icon {
-
-    font-size: 3rem;
-}
-
-.info-card h3 {
-
-    color: #8fff00;
-
-    margin-bottom: 8px;
-
-    font-size: 1.5rem;
-}
-
-.info-card p {
-
-    font-size: 1rem;
-
-    line-height: 1.4;
-
-    opacity: 0.9;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
+/* FOOTER REDES */
 .footer {
-
-    margin-top: 25px;
-
-    width: 100%;
-
-    padding: 12px 20px;
-
-    background: linear-gradient(
-        90deg,
-        #00a84f,
-        #003f8f
-    );
-
+    padding: 8px 30px;
+    background: linear-gradient(90deg, #00c853, #0077ff);
+    border-radius: 50px;
     display: flex;
-
     justify-content: center;
-
     align-items: center;
-
-    gap: 30px;
-
-    flex-wrap: wrap;
-
-    font-weight: bold;
+    gap: 15px;
+    border: 2px solid #ffffff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 .footer p {
-    font-size: 1.2rem;
-
+    font-size: 0.95rem;
+    font-weight: 900;
     letter-spacing: 1px;
 }
 
 .socials {
     display: flex;
-
     align-items: center;
-
-    gap: 22px;
-}
-
-.socials span {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
+    gap: 12px;
 }
 
 .socials img {
-    width: 40px;
-    height: 40px;
-
+    width: 24px;
+    height: 24px;
     object-fit: contain;
-
     filter: brightness(0) invert(1);
-
-    transition: 0.3s ease;
+    transition: transform 0.2s;
 }
 
 .socials img:hover {
-    transform: scale(1.12);
+    transform: scale(1.2);
+}
 
-    opacity: 0.8;
+/* ANIMACIONES */
+@keyframes pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.04); }
+}
+
+/* RESPONSIVE PANTALLAS PEQUEÑAS */
+@media (max-width: 900px) {
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .title-white { font-size: 3rem; }
+    .title-yellow { font-size: 4rem; }
+    
+    .bike-img {
+        max-width: 400px;
+    }
+    
+    .card {
+        width: 100%;
+        max-width: 400px;
+    }
 }
 
 /* =========================
-   CONFETI
+   EFECTOS CELEBRACIÓN INFANTIL
 ========================= */
 
+/* CONFETI Y ELEMENTOS FLOTANTES */
 .confetti {
     position: fixed;
-
-    width: 10px;
-    height: 10px;
-
-    top: -10px;
-
-    animation: fall linear forwards;
-
-    z-index: 999;
+    top: -20px;
+    z-index: 9999;
+    pointer-events: none;
+    animation: fallAndSway linear forwards;
 }
 
-@keyframes fall {
-    to {
-        transform: translateY(110vh) rotate(720deg);
+@keyframes fallAndSway {
+    0% {
+        transform: translateY(0) rotate(0deg) translateX(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(50vh) rotate(360deg) translateX(25px);
+    }
+    100% {
+        transform: translateY(105vh) rotate(720deg) translateX(-25px);
+        opacity: 0;
     }
 }
 
-/* =========================
-   ANIMACIONES
-========================= */
+/* EXPLOSIÓN Y BRILLO EN EL NÚMERO GANADOR */
+.winner-pop {
+    animation: popWinner 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
 
-
-
-@keyframes pulse {
-    from {
+@keyframes popWinner {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    70% {
+        transform: scale(1.2);
+    }
+    100% {
         transform: scale(1);
+        opacity: 1;
+        text-shadow: 
+            0 0 20px #ffea00,
+            0 0 40px #00e676,
+            0 0 60px #00b0ff;
     }
+}
+.bike-img {
+    animation: floatBike 3s ease-in-out infinite;
+}
 
+@keyframes floatBike {
+    0%, 100% {
+        /* Mantiene la posición baja (120px) y sube levemente */
+        transform: translate(-20px, 120px) rotate(0deg);
+    }
+    50% {
+        transform: translate(-20px, 108px) rotate(1deg); /* Sube 12px */
+    }
+}
+.podium-glow {
+    animation: pulseGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+    from {
+        opacity: 0.6;
+        box-shadow: 0 0 30px #00d4ff;
+    }
     to {
-        transform: scale(1.04);
-    }
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 1400px) {
-
-    .frente{
-        width: 280px;
-    }
-
-    .dorso {
-        width: 280px; /* 20% más grande */
-    }
-
-
-
-    .title-white {
-        font-size: 4rem;
-    }
-
-    .title-green {
-        font-size: 5.8rem;
-    }
-
-    .winner-number {
-        font-size: 7rem;
-    }
-}
-
-@media (max-width: 1100px) {
-
-    .card {
-        width: 90%;
-    }
-
-    .frente,
-    .dorso {
-        opacity: 0.15;
-    }
-
-    .title-white {
-        font-size: 3.5rem;
-    }
-
-    .title-green {
-        font-size: 5rem;
-    }
-
-    .winner-number {
-        font-size: 6rem;
-    }
-}
-
-@media (max-width: 768px) {
-
-    .frente,
-    .dorso
-    {
-        display: none;
-    }
-
-    .logo {
-        width: 150px;
-    }
-
-    .title-white {
-        font-size: 2.7rem;
-    }
-
-    .title-green {
-        font-size: 3.8rem;
-    }
-
-    .title-box p {
-        font-size: 1rem;
-    }
-
-    .card {
-        width: 92%;
-
-        padding: 25px;
-    }
-
-    .upload-label,
-    button {
-        font-size: 1rem;
-
-        padding: 18px;
-    }
-
-    .info {
-        font-size: 1.1rem;
-    }
-
-    .winner-number {
-        font-size: 4rem;
-    }
-
-    .winner-section h2 {
-        font-size: 1.5rem;
-    }
-
-    .footer {
-        flex-direction: column;
-
-        text-align: center;
-
-        gap: 15px;
-    }
-
-    .socials img {
-        width: 34px;
-        height: 34px;
-    }
-
-    .info-card {
-        width: 100%;
+        opacity: 1;
+        box-shadow: 0 0 65px #00ffaa, 0 0 90px #0088ff;
     }
 }
