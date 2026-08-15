@@ -47,8 +47,9 @@ function loadCSV(event) {
 
         participants = lines;
 
+        // Oculta el elemento del contador si existe en el DOM
         if (participantsCount) {
-            participantsCount.textContent = participants.length;
+            participantsCount.style.display = "none";
         }
 
         if (drawButton) {
